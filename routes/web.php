@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
+Route::get('/p/create', [PostsController::class, 'create'])->name('posts.create');
+Route::post('/p/create', [PostsController::class, 'store'])->name('posts.store');
+Route::get('/p/{post}', [PostsController::class, 'show'])->name('posts.show');
 
 require __DIR__.'/auth.php';

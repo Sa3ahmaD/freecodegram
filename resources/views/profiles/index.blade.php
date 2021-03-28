@@ -7,26 +7,29 @@
                 </div>
             </div>
             <div class="w-8/12">
-                <div class="title">
+                <div class="title flex justify-between items-end">
                     <h1 class="font-medium text-3xl">{{ $user->username }}</h1>
+                    <a href="{{ route('posts.create') }}"> Add New Post</a>
                 </div>
                 <div class="meta-info flex mt-3">
-                    <p class="pr-5"><strong>153</strong> posts</p>
+                    <p class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</p>
                     <p class="pr-5"><strong>15k</strong> followers</p>
                     <p class=""><strong>153</strong> following</p>
                 </div>
                 <div class="bio mt-3">
-                    <p class="font-medium">freecodecamp.org</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat eaque veniam asperiores vel ipsam quasi, tempore expedita! Nulla, provident excepturi!</p>
-                    <a href="https://www.freecodecamp.org" target="_blank" class="text-blue-400 font-medium">www.freecodecamp.org</a>
+                    <p class="font-medium">{{$user->profile->title}}</p>
+                    <p>{{$user->profile->description}}</p>
+                    <a href="http://{{$user->profile->url}}" target="_blank" class="text-blue-400 font-medium">{{$user->profile->url}}</a>
                 </div>
             </div>
         </div>
         <div class=" max-w-7xl bg-white mx-auto sm:px-6 lg:px-8 sm:py-6 lg:py-8 overflow-hidden">
             <div class="posts flex">
-                <div class="w-4/12 p-3"><img src="https://via.placeholder.com/800" alt="" class="max-w-full"></div>
-                <div class="w-4/12 p-3"><img src="https://via.placeholder.com/800" alt="" class="max-w-full"></div>
-                <div class="w-4/12 p-3"><img src="https://via.placeholder.com/800" alt="" class="max-w-full"></div>
+                @foreach ($user->posts as $post)
+                    <div class="w-4/12 p-3">
+                        <a href="{{route('posts.show')}}"><img src="/storage/{{$post->image}}" alt="{{$post->caption}}" class="max-w-full"></a>
+                    </div>
+                @endforeach
             </div>
             
         </div>
