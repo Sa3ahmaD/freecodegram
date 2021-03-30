@@ -9,16 +9,19 @@
             </div>
             <div class="w-8/12">
                 <div class="title flex justify-between items-end">
-                    <h1 class="font-medium text-3xl">{{ $user->username }} <button class="text-xl bg-indigo-700 text-white px-3 py-1 rounded-md">Follow</button></h1>
+                    <h1 class="flex font-medium text-3xl">
+                        {{ $user->username }} 
+                        <x-button type="" class="follow" :user="$user">{{__('Follow')}}</x-button>
+                    </h1>
                     @can('update', $user->profile)
                         <a href="{{ route('posts.create') }}" class="text-blue-600 hover:text-blue-800 visited:text-purple-600">{{__('Add New Post')}}</a>
                     @endcan
                 </div>
-                <div class="flex mt-3">
-                    @can('update', $user->profile)
-                    <a href="{{route('profile.edit',$user)}}" class="text-blue-600 hover:text-blue-800 visited:text-purple-600">{{__('Edit Profile')}}</a>
-                    @endcan
-                </div>
+                @can('update', $user->profile)
+                    <div class="flex mt-3">                   
+                        <a href="{{route('profile.edit',$user)}}" class="text-blue-600 hover:text-blue-800 visited:text-purple-600">{{__('Edit Profile')}}</a>                    
+                    </div>
+                @endcan
                 <div class="meta-info flex mt-3">
                     <p class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</p>
                     <p class="pr-5"><strong>15k</strong> followers</p>

@@ -3802,6 +3802,17 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+function followUser() {
+  // console.log(this.id);
+  axios.post('/follow/' + this.id).then(function (response) {
+    console.log(response.data);
+  });
+}
+
+var followBtn = document.getElementsByClassName('follow')[0]; // console.log(followBtn);
+
+followBtn.addEventListener('click', followUser);
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

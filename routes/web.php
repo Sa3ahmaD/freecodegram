@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,8 @@ Route::patch('/profile/{user:username}', [ProfilesController::class, 'update'])-
 Route::get('/p/create', [PostsController::class, 'create'])->name('posts.create');
 Route::post('/p', [PostsController::class, 'store'])->name('posts.store');
 Route::get('/p/{post}', [PostsController::class, 'show'])->name('posts.show');
+
+
+Route::post('follow/{user}', [FollowsController::class, 'store']);
 
 require __DIR__.'/auth.php';
